@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant/springApp":{"guestpath":"/vagrant/springApp","hostpath":"D:/tp1/vagrant-srv-web/springApp","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"D:/tp1/vagrant-srv-web","disabled":false,"__vagrantfile":true}}}
