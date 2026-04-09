@@ -12,20 +12,7 @@
 
 ---
 
-## Prérequis
 
-| Outil | Version | Installation |
-|-------|---------|-------------|
-| [VirtualBox](https://www.virtualbox.org/) | 6.x+ | [Télécharger](https://www.virtualbox.org/wiki/Downloads) |
-| [Vagrant](https://developer.hashicorp.com/vagrant/downloads) | 2.x+ | [Télécharger](https://developer.hashicorp.com/vagrant/downloads) |
-| Terminal / PowerShell | — | — |
-
-Vérification :
-
-```bash
-vagrant --version      
-VBoxManage --version   
-```
 
 ---
 
@@ -65,17 +52,17 @@ tp1/
 ## Démarrage rapide
 
 ```bash
-# 1. Cloner le dépôt
+ 1. Cloner le dépôt
 
 cd tp1
 
-# 2. Démarrer la VM (provisionne automatiquement Java + Tomcat)
+ 2. Démarrer la VM (provisionne automatiquement Java + Tomcat)
 vagrant up
 
-# 3. Se connecter
+ 3. Se connecter
 vagrant ssh srv-web
 
-# 4. Lancer le script de gestion
+ 4. Lancer le script de gestion
 sudo /opt/tomcat9/deploy.sh
 ```
 
@@ -177,7 +164,7 @@ Mise à jour du système :
 | ![03](6.png) | Connexion SSH — prompt `vagrant@srv-web` |
 | ![03](7.png) | Connexion SSH — prompt `vagrant@srv-web` |
 | ![03](8.png) | Connexion SSH — prompt `vagrant@srv-web` |
-| ![03](9.png) | Connexion SSH — prompt `vagrant@srv-web` |
+
 
 ### Vérification
 
@@ -192,37 +179,9 @@ http://localhost:8080
 
 ### Créer le WAR
 
-```bash
-mkdir -p ~/myapp/WEB-INF
+| ![03](10.png) | Connexion SSH — prompt `vagrant@srv-web` |
 
-cat > ~/myapp/index.jsp << 'EOF'
-<!DOCTYPE html>
-<html>
-<head><title>Mon App Java</title></head>
-<body>
-  <h1>Application Java déployée avec succès !</h1>
-  <p>Serveur : <%= application.getServerInfo() %></p>
-  <p>Java    : <%= System.getProperty("java.version") %></p>
-</body>
-</html>
-EOF
 
-cat > ~/myapp/WEB-INF/web.xml << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
-  <display-name>MonApplication</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-</web-app>
-EOF
-
-cd ~/myapp && jar -cvf /tmp/myapp.war .
-```
 
 ### Déployer dans Tomcat
 
@@ -237,18 +196,17 @@ ls /opt/tomcat9/webapps/
 ### Tester
 
 ```bash
-curl http://localhost:8080/myapp/
+curl http://localhost:8080
 # ou : http://192.168.56.10:8080/myapp/
 ```
 
-| Capture | Description |
-|---------|-------------|
+
 | ![12](./screenshots/12_webapps_deploy.png) | Répertoire `webapps/` après déploiement |
 | ![13](./screenshots/13_app_browser.png) | Application accessible dans le navigateur |
 
 ---
 
-## 📜 Partie 6 — Script deploy.sh
+## Partie 6 — Script deploy.sh
 
 ### Fonctionnalités
 
