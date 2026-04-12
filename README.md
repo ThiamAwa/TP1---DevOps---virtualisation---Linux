@@ -18,43 +18,15 @@
 
 ##  Structure du projet
 
-```
-tp1/
-├── Vagrantfile                 ← Configuration de la VM
-├── README.md                   ← Ce fichier
-├── deploy.sh                   ← Script de gestion Tomcat
-├── springApp/
-│   ├── index.jsp               ← Page principale de l'app
-│   └── WEB-INF/
-│       └── web.xml             ← Descripteur de déploiement
-└── screenshots/
-    ├── 01_vagrant_up.png
-    ├── 02_vagrant_status.png
-    ├── 03_ssh_connexion.png
-    ├── 04_apt_update.png
-    ├── 05_jdk8_install.png
-    ├── 06_jdk11_install.png
-    ├── 07_jdk17_install.png
-    ├── 08_java_alternatives.png
-    ├── 09_tomcat_download.png
-    ├── 10_tomcat_status.png
-    ├── 11_tomcat_browser.png
-    ├── 12_webapps_deploy.png
-    ├── 13_app_browser.png
-    ├── 14_deploy_menu.png
-    ├── 15_stop_tomcat.png
-    ├── 16_restart_tomcat.png
-    └── 17_deploy_war.png
-```
 
 ---
 
 ## Démarrage rapide
 
 ```bash
- 1. Cloner le dépôt
+  Cloner le dépôt
 
-cd tp1
+cd tp1/vagarant-svr-web
 
  2. Démarrer la VM (provisionne automatiquement Java + Tomcat)
 vagrant up
@@ -66,7 +38,7 @@ vagrant ssh srv-web
 sudo /opt/tomcat9/deploy.sh
 ```
 
-Application disponible sur : **http://localhost:8080/myapp**
+Application disponible sur : **http://localhost:8080/myapp** ou  **http://localhost:8080**
 
 ---
 
@@ -75,7 +47,7 @@ Application disponible sur : **http://localhost:8080/myapp**
 ### Initialisation
 
 ```bash
-mkdir tp1 && cd tp1
+mkdir tp1/vagrant-srv-web && cd tp1/vagrant-srv-web
 vagrant init
 ```
 
@@ -128,7 +100,7 @@ vagrant up
 vagrant status
 
 
-##  Partie 2 — Connexion SSH
+##  Connexion SSH
 
 ```bash
 vagrant ssh srv-web
