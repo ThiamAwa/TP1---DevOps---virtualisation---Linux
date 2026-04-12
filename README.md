@@ -201,8 +201,8 @@ curl http://localhost:8080
 ```
 
 
-| ![12](./screenshots/12_webapps_deploy.png) | Répertoire `webapps/` après déploiement |
-| ![13](./screenshots/13_app_browser.png) | Application accessible dans le navigateur |
+
+| ![13](17.png) | Application accessible dans le navigateur |
 
 ---
 
@@ -222,6 +222,8 @@ curl http://localhost:8080
 | `8` | Lister les applications déployées |
 | `0` | Quitter |
 
+| ![13](21.png) |
+
 ### Code source — `deploy.sh`
 
 ```bash
@@ -240,7 +242,7 @@ print_header() {
   clear
   echo -e "${BLUE}${BOLD}"
   echo "  ╔══════════════════════════════════════════╗"
-  echo "  ║      🐱  GESTION TOMCAT 9 — MENU         ║"
+  echo "  ║        GESTION TOMCAT 9 — MENU         ║"
   echo "  ║         srv-web · 192.168.56.10           ║"
   echo "  ╚══════════════════════════════════════════╝"
   echo -e "${RESET}"
@@ -255,25 +257,25 @@ get_status() {
   echo ""
 }
 
-start_tomcat()   { sudo systemctl start   $SERVICE && echo -e "${GREEN}✅ Tomcat démarré.${RESET}"; }
-stop_tomcat()    { sudo systemctl stop    $SERVICE && echo -e "${GREEN}✅ Tomcat arrêté.${RESET}"; }
-restart_tomcat() { sudo systemctl restart $SERVICE && echo -e "${GREEN}✅ Tomcat redémarré.${RESET}"; }
+start_tomcat()   { sudo systemctl start   $SERVICE && echo -e "${GREEN} Tomcat démarré.${RESET}"; }
+stop_tomcat()    { sudo systemctl stop    $SERVICE && echo -e "${GREEN} Tomcat arrêté.${RESET}"; }
+restart_tomcat() { sudo systemctl restart $SERVICE && echo -e "${GREEN} Tomcat redémarré.${RESET}"; }
 status_tomcat()  { sudo systemctl status  $SERVICE --no-pager; }
 
 deploy_war() {
   read -rp "  Chemin du WAR : " WAR_PATH
-  [ ! -f "$WAR_PATH" ] && echo -e "${RED}❌ Fichier introuvable.${RESET}" && return
+  [ ! -f "$WAR_PATH" ] && echo -e "${RED} Fichier introuvable.${RESET}" && return
   WAR_NAME=$(basename "$WAR_PATH")
   APP_NAME="${WAR_NAME%.war}"
   sudo cp "$WAR_PATH" "$WEBAPPS/" && sudo chown root:root "$WEBAPPS/$WAR_NAME"
-  echo -e "${GREEN}✅ WAR déployé : http://localhost:8080/$APP_NAME${RESET}"
+  echo -e "${GREEN} WAR déployé : http://localhost:8080/$APP_NAME${RESET}"
 }
 
 undeploy_app() {
   ls "$WEBAPPS" | grep -v 'ROOT\|manager\|host-manager\|examples\|docs'
   read -rp "  Nom de l'app à supprimer : " APP_NAME
   sudo rm -rf "$WEBAPPS/$APP_NAME" "$WEBAPPS/${APP_NAME}.war"
-  echo -e "${GREEN}✅ '$APP_NAME' supprimée.${RESET}"
+  echo -e "${GREEN} '$APP_NAME' supprimée.${RESET}"
 }
 
 show_logs()  { sudo tail -n 50 "$LOGS"; }
@@ -291,7 +293,7 @@ while true; do
     1) start_tomcat ;;    2) stop_tomcat ;;     3) restart_tomcat ;;
     4) status_tomcat ;;   5) deploy_war ;;      6) undeploy_app ;;
     7) show_logs ;;       8) list_apps ;;       0) echo -e "${GREEN}Au revoir !${RESET}"; exit 0 ;;
-    *) echo -e "${RED}❌ Option invalide.${RESET}" ;;
+    *) echo -e "${RED} Option invalide.${RESET}" ;;
   esac
   read -rp "  [Entrée] pour continuer..."
 done
@@ -308,14 +310,14 @@ sudo /opt/tomcat9/deploy.sh
 
 | Capture | Description |
 |---------|-------------|
-| ![14](./screenshots/14_deploy_menu.png) | Menu principal du script |
-| ![15](./screenshots/15_stop_tomcat.png) | Option 2 — Arrêt de Tomcat |
-| ![16](./screenshots/16_restart_tomcat.png) | Option 3 — Redémarrage de Tomcat |
-| ![17](./screenshots/17_deploy_war.png) | Option 5 — Déploiement d'un WAR |
+| ![14](21.png) | Menu principal du script |
+| ![15](22.png) | Option 2 — Arrêt de Tomcat |
+| ![16](23.png) | Option 3 — Redémarrage de Tomcat |
+| ![16](24.png) |
 
 ---
 
-## ✅ Résultat final
+##  Résultat final
 
 | Composant | Valeur |
 |-----------|--------|
@@ -323,7 +325,7 @@ sudo /opt/tomcat9/deploy.sh
 | Adresse IP | `192.168.56.10` |
 | Ressources | 2 Go RAM — 2 vCPUs |
 | JDK 8 | `/usr/lib/jvm/java-8-openjdk-amd64` |
-| JDK 11 ✅ | `/usr/lib/jvm/java-11-openjdk-amd64` (actif) |
+| JDK 11  | `/usr/lib/jvm/java-11-openjdk-amd64` (actif) |
 | JDK 17 | `/usr/lib/jvm/java-17-openjdk-amd64` |
 | Tomcat 9 | `/opt/tomcat9` — port `8080` |
 | Application | `http://192.168.56.10:8080/myapp` |
@@ -358,10 +360,10 @@ ls /opt/tomcat9/webapps/
 
 ---
 
-## 📄 Licence
+##  Licence
 
 Distribué sous licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
 
 ---
 
-*TP réalisé dans le cadre du cours DevOps / Administration Système*
+
